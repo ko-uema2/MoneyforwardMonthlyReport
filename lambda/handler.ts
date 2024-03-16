@@ -4,18 +4,16 @@ import {
   APPLICATION_ERROR_MESSAGE,
   UNKNOWN_ERROR_MESSAGE,
 } from "./utils/constant";
-import { logger, tracer } from "./utils/powertools";
+import { logger } from "./utils/powertools";
 import { EnvContext, EnvVar, strategyMap } from "./utils/strategy/envStrategy";
 import { S3EventExtractor } from "./s3EventExtractor";
 import { SSMParameterFetcher } from "./ssm";
-import { Dynamo } from "./dynamo";
 import { Notion } from "./notion";
 import { ExpenseDataExtractor } from "./expenseDataExtractor";
 import { ExpenseCalculator } from "./expenseCalculator";
 
 class Handler {
   private s3EventExtractor: S3EventExtractor;
-  private dynamo: Dynamo;
   private notion: Notion;
   private requiredEnvVars: { [key: string]: string | undefined };
 
@@ -48,9 +46,6 @@ class Handler {
       );
     }
 
-    this.dynamo = new Dynamo({
-      DYNAMODB_TABLE_NAME: this.requiredEnvVars.DYNAMODB_TABLE_NAME!,
-    });
     this.notion = new Notion({
       NOTION_AUTH: this.requiredEnvVars.NOTION_AUTH!,
       NOTIONDB_ID: this.requiredEnvVars.NOTIONDB_ID!,
@@ -85,9 +80,6 @@ class Handler {
 
       // notionへ書き込み
       await this.notion.writeDB(sumByCategory, expensedDate);
-
-      // DynamoDBへの書き込み
-      await this.dynamo.writeDB(sumByCategory, expensedDate);
     } catch (error: unknown) {
       if (error instanceof AppError) {
         logger.error(APPLICATION_ERROR_MESSAGE, error);

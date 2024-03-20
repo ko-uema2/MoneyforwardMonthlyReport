@@ -98,15 +98,15 @@
 以下 URL を参考に、Notion データベースの ID を取得してください。  
 [【Notion】データベース ID を確認しよう](https://note.com/amatyrain/n/nb9ebe31dfab7)
 
-## 8. Notion データベースへのアクセス用 `Integretion` を作成
+## 8. Notion データベースへのアクセス用 `Integration` を作成
 
-下記 URL を参考に `Integretion` を作成してください。
+下記 URL を参考に `Integration` を作成してください。
 
 [Notion API を使用したインテグレーションの作成](https://www.notion.so/ja-jp/help/create-integrations-with-the-notion-api)
 
-## 9. Notion データベースへ `Integretion` を追加
+## 9. Notion データベースへ `Integration` を追加
 
-下記 URL を参考に `Integretion` をデータベースに追加してください。
+下記 URL を参考に `Integration` をデータベースに追加してください。
 
 [API コネクトの追加・管理](https://www.notion.so/ja-jp/help/add-and-manage-connections-with-the-api)
 
@@ -124,7 +124,7 @@
 | パラメータ名                             | タイプ       | 値                                                                                  | 説明                                                   |
 | ---------------------------------------- | ------------ | ----------------------------------------------------------------------------------- | ------------------------------------------------------ |
 | `moneyforwardMonthlyReport-notionDBId`   | SecureString | Notion データベースの ID                                                            | 「7. データベース ID の取得」で取得したデータベース ID |
-| `moneyforwardMonthlyReport-notionAuth`   | SecureString | 「8. Notion データベースへのアクセス用 `Integretion` を作成」で取得したシークレット | `Notion Integration` の認証用シークレット              |
+| `moneyforwardMonthlyReport-notionAuth`   | SecureString | 「8. Notion データベースへのアクセス用 `Integration` を作成」で取得したシークレット | `Notion Integration` の認証用シークレット              |
 | `moneyforwardMonthlyReport-categoryList` | StringList   | `1. 定期・固定費,2. 定期・変動費,3. 不定期・固定費,4. 不定期・変動費`               | Notion データベース内の列名をカンマ区切りで設定        |
 
 ## 11. マネーフォワード内中項目の名称を変更
